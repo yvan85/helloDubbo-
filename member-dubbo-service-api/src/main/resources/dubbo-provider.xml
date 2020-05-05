@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+               http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+<!--    <context:property-placeholder location="classpath:config.properties" ignore-unresolvable="true"/>-->
+
+    <!--定义了提供方应用信息，用于计算依赖关系，在dubbo-admin 或  dubbo-mobitor会显示这个名字，方便辨识-->
+    <dubbo:application name="member-provixer"/>
+
+<!--  使用zookeeper 注册中心暴露服务，注意要先开启zookeeper  -->
+    <dubbo:registry address="zookeeper://localhost:2181"/>
+<!--    <dubbo:registry address="172.16.81.70:2181"/>-->
+
+<!-- 用dubbo协议在20880端口暴露服务   -->
+    <dubbo:protocol name="dubbo" port="20880"/>
+
+<!-- 使用dubbo协议实现的api.Member 接口   -->
+    <dubbo:service interface="com.zy.api.member.MemberService" ref="memberServiceImpl"    protocol="dubbo"/>
+
+<!-- 具体实现该接口的bean   -->
+    <bean id="memberServiceImpl" class="com.zy.api.member.service.impl.MemberServiceImpl"/>
+
+
+    <!--
+        executes:一个服务提供者并行执行请求上限，即当Provider对一个服务的并发调用到上限后，新调用会Wait（Consumer可能到超时）。
+        在方法上配置（dubbo:method ）则并发限制针对方法，在接口上配置（dubbo:service），则并发限制针对服务。
+
+        threads:服务线程池大小(固定大小)
+
+        token:UUID生成随机令牌
+
+        retries:失败重试次数
+    -->
+
+<!--    <dubbo:provider executes="500" threads="500" token="false" retries="1" timeout="60000" filter="providerAccessFilter"/>-->
+<!--    <dubbo:protocol id="tns-open-price-city-protocol" name="dubbo" port="20097"/>-->
+
+<!--    <bean id="cityOpenPriceRemote" class="com.tujia.tns.price.CityOpenPriceRemoteImpl"/>-->
+<!--    <dubbo:service interface="com.tujia.tns.price.api.service.price.CityOpenPriceRemote" ref="cityOpenPriceRemote"-->
+<!--                   version="1.0.0" registry="tns-open-price-city-registry" protocol="tns-open-price-city-protocol"-->
+<!--                   group="${dubbo.provider.group}" timeout="10000"/>-->
+
+</beans>
