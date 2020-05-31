@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	   http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+       default-autowire="byName">
+
+    <dubbo:consumer timeout="60000" check="false"/>
+    <dubbo:application name="qa_public_service" owner="yizheng_4"/>
+
+    <dubbo:registry id="tns-product" protocol="zookeeper" address="172.16.81.70:2181" timeout="3000"
+                    check="false"/>
+
+<!--    <dubbo:reference id="productForOpenPriceServiceT1" registry="tns-product" version="1.0.0" check="false"-->
+<!--                     interface="com.tujia.tns.product.api.service.ProductForOpenPriceService"-->
+<!--                     group="t1Group"/>-->
+
+<!--    <dubbo:reference id="productForOpenPriceServiceT2" registry="tns-product" version="1.0.0" check="false"-->
+<!--                     interface="com.tujia.tns.product.api.service.ProductForOpenPriceService"-->
+<!--                     group="t2Group"/>-->
+
+<!--    <dubbo:reference id="productForOpenPriceService" registry="tns-product" version="1.0.0" check="false"-->
+<!--                     interface="com.tujia.tns.product.api.service.ProductForOpenPriceService"-->
+<!--                     group=""/>-->
+
+</beans>

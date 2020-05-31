@@ -10,8 +10,18 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>order-dubbo-consumer</artifactId>
-
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 
     <dependencies>
@@ -30,6 +40,23 @@
             <scope>compile</scope>
         </dependency>
 
+        <dependency>
+            <groupId>com.tujia.oversea</groupId>
+            <artifactId>ov-base-house-import-api</artifactId>
+            <version>2.1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.tujia.house.vo</groupId>
+            <artifactId>house-vo</artifactId>
+            <version>2.4.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.tujia.tns.baseinfo</groupId>
+            <artifactId>baseinfo-api</artifactId>
+            <version>3.1.3</version>
+        </dependency>
         <!--ZK的客户端Jar依赖包-->
         <dependency>
             <groupId>com.101tec</groupId>
@@ -110,4 +137,5 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
+
 </project>

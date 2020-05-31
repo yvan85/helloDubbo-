@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        ">
+<!--消费者暴露的名字-->
+<!--    <dubbo:application name="order-consumer"/>-->
+    <dubbo:application name="outsource-web"/>
+
+    <dubbo:registry protocol="zookeeper" address="zookeeper://172.16.81.70:2181" timeout="30000"/>
+    <dubbo:consumer check="false" timeout="60000" retries="0" group="t1Group"/>
+<!--  向zookeeper 订单provider的地址，由zookeeper定时推送  -->
+<!--    <dubbo:registry address="zookeeper://localhost:2181"/>-->
+<!--    <dubbo:reference id="memberService" interface="com.zy.api.member.MemberService"/>-->
+
+<!--    <dubbo:reference id="houseSearchApiService" check="false" interface="com.tujia.tns.baseinfo.api.service.HouseSearchApiService"/>-->
+
+
+
+    <dubbo:reference id="houseApiService" check="false" interface="com.tujia.tns.baseinfo.api.service.HouseApiService"/>
+    <dubbo:reference id="houseUnitService" check="false" interface="com.tujia.oversea.api.houseimport.HouseUnitService"/>
+<!--    <dubbo:reference id="salesActTJService" check="false" version="1.0.0" interface="com.tujia.tns.salespromotion.api.SalesActTJService"/>-->
+<!--    <dubbo:reference id="salesActOPService" check="false" version="1.0.0" interface="com.tujia.tns.salespromotion.api.SalesActOPService"/>-->
+<!--    <dubbo:reference id="salesActivityEditRemoteService" check="false" version="1.0.0" interface="com.tujia.tns.salespromotion.api.SalesActivityEditRemoteService"/>-->
+<!--    <dubbo:reference id="houseSearchApiService" check="false" version="1.0.0" interface="com.tujia.tns.baseinfo.api.service.HouseSearchApiService"/>-->
+<!--    <dubbo:reference id="houseApiService" check="false" version="1.0.0" interface="com.tujia.tns.baseinfo.api.service.HouseApiService"/>-->
+<!--    <dubbo:reference id="houseAuditTnsService" check="false" version="" interface="com.tujia.house.service.audit.HouseAuditTnsService"/>-->
+<!--    <dubbo:reference id="openPriceRemote" check="false" version="1.0.0" interface="com.tujia.tns.price.api.service.price.OpenPriceRemote"/>-->
+
+<!--    <dubbo:reference id="salesPromoFilterService" registry="tns-salespromotion" version="1.0.0" check="false"-->
+<!--                     interface="com.tujia.tns.salespromotion.api.SalesPromoFilterService"-->
+<!--                     group="${dubbo.salespromotion.consumer.group}"/>-->
+
+<!--    <dubbo:registry id="tns-promo" protocol="zookeeper" address="${app.zookeeper.url}" timeout="500"-->
+<!--                    check="false"/>-->
+<!--    <dubbo:reference id="channelCouponService" registry="tns-promo" version="1.0" check="false" retries="0"-->
+<!--                     interface="com.tujia.trading.promo.api.remote.QPromoApi"-->
+<!--                     group="${dubbo.promo.consumer.group}"/>-->
+<!--    <dubbo:reference id="couponService" registry="tns-promo" version="1.0" check="false" retries="0"-->
+<!--                     interface="com.tujia.trading.promo.api.remote.PromoApi"-->
+<!--                     group="${dubbo.promo.consumer.group}"/>-->
+<!--    <dubbo:reference id="userCouponApi" registry="tns-promo" version="1.0" check="false" retries="0"-->
+<!--                     interface="com.tujia.trading.promo.api.service.UserCouponApi"-->
+<!--                     group="${dubbo.promo.consumer.group}" timeout="200"/>-->
+</beans>
